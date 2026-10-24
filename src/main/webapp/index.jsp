@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Nexusstore — Modern E‑Commerce</title>
+    <title>NexusShop — Modern E‑Commerce</title>
 
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -16,15 +16,15 @@
             --bg-card: #ffffff;
             --primary: #1a1a2e;
             --primary-light: #2d2d44;
-            --accent: #e07a5f;
-            --accent-light: #f4d0c4;
-            --accent-dark: #c05a3e;
+            --accent: #6c5ce7;
+            --accent-light: #e4e0fb;
+            --accent-dark: #5541d6;
             --muted: #6b6b7a;
             --muted-light: #a0a0b0;
             --surface: #f0efed;
             --success: #2a9d8f;
             --warning: #e9c46a;
-            --radius: 16px;
+            --radius: 20px;
             --radius-sm: 10px;
             --shadow: 0 4px 24px rgba(26, 26, 46, 0.06);
             --shadow-hover: 0 12px 48px rgba(26, 26, 46, 0.10);
@@ -115,7 +115,7 @@
             background: var(--accent-dark);
             border-color: var(--accent-dark);
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(224, 122, 95, 0.30);
+            box-shadow: 0 8px 24px rgba(108, 92, 231, 0.30);
         }
         .btn-secondary {
             background: var(--primary);
@@ -208,10 +208,14 @@
             color: var(--muted);
             transition: var(--transition);
         }
-        nav.main-nav li a:hover,
-        nav.main-nav li a.active {
+        nav.main-nav li a:hover {
             background: var(--surface);
             color: var(--primary);
+        }
+        nav.main-nav li a.active {
+            background: var(--accent-light);
+            color: var(--accent-dark);
+            font-weight: 600;
         }
         nav.main-nav li a i {
             font-size: 14px;
@@ -271,7 +275,7 @@
         .search-wrap:focus-within {
             border-color: var(--accent);
             background: #fff;
-            box-shadow: 0 0 0 4px rgba(224, 122, 95, 0.10);
+            box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.10);
         }
         .search-wrap input {
             border: 0;
@@ -349,15 +353,48 @@
             border-radius: var(--radius);
             overflow: hidden;
             margin: 20px 24px 0;
-            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+            background: linear-gradient(120deg, #1a1a2e 0%, #3b2f7a 60%, #6c5ce7 100%);
         }
         .hero::before {
             content: '';
             position: absolute;
             inset: 0;
             background: url('https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-            opacity: 0.35;
+            opacity: 0.28;
+            mix-blend-mode: luminosity;
             z-index: 0;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            right: -120px;
+            top: -140px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.45) 0%, transparent 70%);
+            z-index: 0;
+            animation: floatGlow 8s ease-in-out infinite alternate;
+        }
+        @keyframes floatGlow {
+            to { transform: translate(-60px, 60px) scale(1.1); }
+        }
+        .hero .perks {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .hero .perks span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .hero .perks i {
+            color: #a78bfa;
         }
         .hero .container {
             position: relative;
@@ -365,8 +402,10 @@
         }
         .hero .badge {
             display: inline-block;
-            background: rgba(224, 122, 95, 0.20);
-            color: var(--accent);
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(6px);
             padding: 4px 16px;
             border-radius: 999px;
             font-weight: 600;
@@ -409,9 +448,21 @@
             flex-wrap: wrap;
         }
         .section-header .title-group h2 {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -0.3px;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .section-header .title-group h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 48px;
+            height: 4px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--accent), #a78bfa);
         }
         .section-header .title-group p {
             color: var(--muted);
@@ -467,7 +518,8 @@
             transition: var(--transition);
         }
         .cat-card:hover .icon-wrap {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #a78bfa);
+            transform: rotate(-8deg) scale(1.08);
             color: #fff;
         }
         .cat-card h4 {
@@ -527,6 +579,8 @@
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.3px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
         .product-card .badge.sale {
             background: var(--warning);
@@ -609,8 +663,8 @@
         }
         .product-card .footer .add-btn {
             flex: 1;
-            padding: 10px;
-            border-radius: var(--radius-sm);
+            padding: 11px;
+            border-radius: 999px;
             background: var(--primary);
             color: #fff;
             font-weight: 600;
@@ -622,7 +676,8 @@
             gap: 8px;
         }
         .product-card .footer .add-btn:hover {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #a78bfa);
+            box-shadow: 0 6px 18px rgba(108, 92, 231, 0.35);
             transform: scale(1.02);
         }
         .product-card .footer .add-btn.added {
@@ -1116,6 +1171,38 @@
                 font-size: 13px;
             }
         }
+        /* ========== BACK TO TOP ========== */
+        #backToTop {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #a78bfa);
+            color: #fff;
+            font-size: 18px;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 10px 28px rgba(108, 92, 231, 0.40);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(16px);
+            transition: var(--transition);
+            z-index: 200;
+        }
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #backToTop:hover {
+            transform: translateY(-4px);
+        }
+        ::selection {
+            background: var(--accent);
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -1126,10 +1213,10 @@
         <div class="container header-inner">
             <div style="display:flex;align-items:center;gap:12px;">
                 <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
-                    <em class="fas fa-bars"></em>
+                    <i class="fas fa-bars"></i>
                 </button>
                 <a class="brand" href="#">
-                    <em class="fas fa-store-alt"></em>
+                    <i class="fas fa-store-alt"></i>
                     <span>Nexus<span class="accent">Shop</span></span>
                 </a>
             </div>
@@ -1185,12 +1272,17 @@
         <!-- HERO -->
         <section class="hero" aria-label="Hero banner">
             <div class="container">
-                <div class="badge"><i class="fas fa-sparkles"></i> New Collection 2026</div>
+                <div class="badge"><i class="fas fa-wand-magic-sparkles"></i> New Collection 2026</div>
                 <h1>Discover winter collection <br>Essentials</h1>
                 <p>Curated fashion, tech & accessories with free shipping on your first order. Limited-time deals await.</p>
                 <div class="actions">
                     <button class="btn btn-primary" id="shopNow"><i class="fas fa-arrow-right"></i> Shop Now</button>
                     <button class="btn btn-ghost" id="exploreDeals"><i class="fas fa-clock"></i> Explore Deals</button>
+                </div>
+                <div class="perks">
+                    <span><i class="fas fa-truck-fast"></i> Free shipping</span>
+                    <span><i class="fas fa-rotate-left"></i> 30-day returns</span>
+                    <span><i class="fas fa-shield-halved"></i> Secure checkout</span>
                 </div>
             </div>
         </section>
@@ -1349,6 +1441,8 @@
             </div>
         </div>
     </footer>
+
+    <button id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
     <!-- ===== SCRIPT ===== -->
     <script>
@@ -1701,10 +1795,15 @@
             }
         });
 
+        // Back-to-top button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('show', window.scrollY > 500);
+        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
         console.log('🚀 NexusShop — user‑friendly e‑commerce demo loaded.');
     </script>
 
 </body>
 </html>
-
-change the ui of my app code and make sure to look UI more attractive
